@@ -21,7 +21,13 @@ import RoomsIcon from '@material-ui/icons/MeetingRoom';
 import DocsIcon from '@material-ui/icons/InsertDriveFile';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import { Router, Route, Link } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+
+
 const drawerWidth = 200;
+const history = createBrowserHistory()
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,29 +72,33 @@ function HomeLayout(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  console.log('history:', history)
 
   const drawer = (
     <div>
       <div className={classes.toolbar} />
       <Divider />
-      <List>
-        <ListItem button key={'Home'}>
-          <ListItemIcon>{<HomeIcon />}</ListItemIcon>
-          <ListItemText primary={'Home'} />
-        </ListItem>
-        <ListItem button key={'Rooms'}>
-          <ListItemIcon>{<RoomsIcon />}</ListItemIcon>
-          <ListItemText primary={'Rooms'} />
-        </ListItem>
-        <ListItem button key={'Pictures'}>
-          <ListItemIcon>{<PicsIcon />}</ListItemIcon>
-          <ListItemText primary={'Pictures'} />
-        </ListItem>
-        <ListItem button key={'Docs'}>
-          <ListItemIcon>{<DocsIcon />}</ListItemIcon>
-          <ListItemText primary={'Docs'} />
-        </ListItem>
-      </List>
+      <Router history={history}>
+        <List>
+          <ListItem button key={'Home'}>
+            <ListItemIcon>{<HomeIcon />}</ListItemIcon>
+            <ListItemText primary={'Home'} />
+          </ListItem>
+          <ListItem button key={'Rooms'}>
+            <ListItemIcon>{<RoomsIcon />}</ListItemIcon>
+            <ListItemText primary={'Rooms'} />
+          </ListItem>
+          <ListItem button key={'Pictures'}>
+            <ListItemIcon>{<PicsIcon />}</ListItemIcon>
+            <ListItemText primary={'Pictures'} />
+          </ListItem>
+          <ListItem button key={'Docs'}>
+            <ListItemIcon>{<DocsIcon />}</ListItemIcon>
+            <ListItemText primary={'Docs'} />
+          </ListItem>
+        </List>
+      </Router>
+
     </div>
   );
 
@@ -146,7 +156,9 @@ function HomeLayout(props) {
         </nav>
       </div>
 
-      <HomeScreen></HomeScreen>
+      <HomeScreen
+
+      ></HomeScreen>
     </div>
 
   )
